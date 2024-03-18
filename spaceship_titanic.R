@@ -75,7 +75,11 @@ str(train)
 
 ### Creating Models ###
 
-##Linear Regression
-model_linear <- lm(Transported ~. - Name , data = train)
+##Logistic Regression
+log.model <- glm(Transported ~ HomePlanet + CryoSleep + Destination + Age + VIP + Total_Spend , family = binomial(link = 'logit'), data = train)
 
-summary(model_linear)
+summary(log.model)
+
+ggplot(log.model, aes(log.model$residuals)) + geom_histogram()
+
+       
